@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 FNV-MMFE
 ========
 
@@ -51,3 +52,9 @@ Instructions
     The R scripts require a working R environment (http://www.r-project.org/). The scripts are only tested on R version 2.15, but should be running smoothly on newer versions. The scripts do not require extra R packages.
 
 
+=======
+Efficient-Responsive
+====================
+
+Numerical experiments for the paper "The Effect of Competition on the Efficient–Responsive Choice"
+>>>>>>> 49a2cc0ff35401255e16df1797b2ed96b9a0cbd7
