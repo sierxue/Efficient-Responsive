@@ -56,16 +56,18 @@ double foc1_ER(double qq)
 
 int main()
 {
-
+    /*********************************************************
+    //DO NOT OUTPUT DETAILED NUMBER IN THE PRODUCTION VERSION
     //Open output file
-    //file.open("Efficient-Responsive-Single.txt");
+    file.open("Efficient-Responsive-Single.txt");
 
-    //if (! file)
-    //{
+    if (! file)
+    {
         //if fail to open the file
-    //    cerr << "can't open output file Efficient-Responsive-Single.txt!" << endl;
-    //    exit(EXIT_FAILURE);
-    //}
+        cerr << "can't open output file Efficient-Responsive-Single.txt!" << endl;
+        exit(EXIT_FAILURE);
+    }
+    *********************************************************/
 
     file2.open("Efficient-Responsive-Single-Nash.txt");
 
@@ -77,13 +79,13 @@ int main()
     }
 
     
-    cout << setprecision(10);
+    cout << setprecision(5);
     //file << setprecision(10);
     file2 << setprecision(5);
 
 
 
-    cout << "u\tva\tb\tc_E\tc_R\tK\tq_EE\tPi_EE\tCS_EE\tTS_EE\tq_RR\tPi_RR\tCS_RR\tTS_RR\tqE_ER\tqR_ER\tPiE_ER\tPiR_ER\tCS_ER\tTS_ER\tNashEq\tCS*\tTS*" << endl;
+    //cout << "u\tvar\tb\tc_E\tc_R\tK\tq_EE\tPi_EE\tCS_EE\tTS_EE\tq_RR\tPi_RR\tCS_RR\tTS_RR\tqE_ER\tqR_ER\tPiE_ER\tPiR_ER\tCS_ER\tTS_ER\tNashEq\tCS*\tTS*" << endl;
     //file << "u\tvar\tb\tc_E\tc_R\tK\tq_EE\tPi_EE\tCS_EE\tTS_EE\tq_RR\tPi_RR\tCS_RR\tTS_RR\tqE_ER\tqR_ER\tPiE_ER\tPiR_ER\tCS_ER\tTS_ER\tNashEq\tCS*\tTS*" << endl;
 
     file2 << "K\tdelta\tb\tNashE\tNashR\tCS01\tCS12\tTS01\tTS12\tCoop01\tCoop12" << endl;
@@ -126,10 +128,12 @@ int main()
         
         delta = 1+0.1*kk;     //iterate over multiple values for delta
         c_R = c_E*delta;
-
+        
         for (int jj=0; jj<=JJ; jj++)        //for b
         {
             b = jj*0.01;
+
+            cout << "Calculating K=" << K << ", delta=" << delta << ", b=" << b << " ... " << endl;
 
             for (int ii=0; ii<=II; ii++)    //for var
             {
@@ -137,7 +141,7 @@ int main()
 
 
                 //file << u << "\t" << var << "\t"  << b << "\t"  << c_E << "\t"  << c_R << "\t"  << K << "\t" ;
-                cout << u << "\t" << var << "\t"  << b << "\t"  << c_E << "\t"  << c_R << "\t"  << K << "\t" ;
+                //cout << u << "\t" << var << "\t"  << b << "\t"  << c_E << "\t"  << c_R << "\t"  << K << "\t";
 
                 //stdev of the signal (info available to the Responsive firm)
                 stdev = sqrt(var);
@@ -150,7 +154,7 @@ int main()
                 double	TS_EE = (3+b)*Pi_EE;
 
                 //file << q_EE << "\t"  << Pi_EE << "\t"  << CS_EE << "\t"  << TS_EE << "\t";
-                cout << q_EE << "\t"  << Pi_EE << "\t"  << CS_EE << "\t"  << TS_EE << "\t";
+                //cout << q_EE << "\t"  << Pi_EE << "\t"  << CS_EE << "\t"  << TS_EE << "\t";
 
 
                 //for case R-R
@@ -173,7 +177,7 @@ int main()
                 TS_RR = CS_RR + 2*Pi_RR;
 
                 //file << q_RR << "\t"  << Pi_RR << "\t"  << CS_RR << "\t"  << TS_RR << "\t";
-                cout << q_RR << "\t"  << Pi_RR << "\t"  << CS_RR << "\t"  << TS_RR << "\t";
+                //cout << q_RR << "\t"  << Pi_RR << "\t"  << CS_RR << "\t"  << TS_RR << "\t";
 
 
 
@@ -227,9 +231,11 @@ int main()
                 TS_ER = CS_ER + PiR_ER + PiE_ER;
 
                 //file << qE_ER << "\t"  << qR_ER << "\t"  << PiE_ER << "\t"  << PiR_ER << "\t"  << CS_ER << "\t"  << TS_ER << "\t";
-                cout << qE_ER << "\t"  << qR_ER << "\t"  << PiE_ER << "\t"  << PiR_ER << "\t"  << CS_ER << "\t"  << TS_ER << "\t";
+                //cout << qE_ER << "\t"  << qR_ER << "\t"  << PiE_ER << "\t"  << PiR_ER << "\t"  << CS_ER << "\t"  << TS_ER << "\t";
 
 
+                /*********************************************************
+                //DO NOT OUTPUT DETAILED NUMBER IN THE PRODUCTION VERSION
 
                 //Nash equilibrium analysis
                 if ((Pi_EE>=PiR_ER)&&(PiE_ER>=Pi_RR))
@@ -292,6 +298,7 @@ int main()
                     //file << 2 << endl;          //R-R
                 }
 
+                *********************************************************/
 
 
 
