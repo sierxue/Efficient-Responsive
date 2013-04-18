@@ -1,6 +1,7 @@
 #################
 # R code for analyzing output and plot figures
 # v1.0 (organized on 2013-04-17)
+# for Figure 8 in the paper
 #################
 
 #NEED TO FIRST SET R WORKING DIRECTORY TO WHERE THE FILES ARE LOCATED!!!
@@ -11,7 +12,7 @@
 
 
 
-#prepare data for Figure 1
+#prepare data for Figure 8
 
     data.s0 <- data[data$s==0,]
     data.s05 <- data[data$s==0.5,]
@@ -21,9 +22,9 @@
 
 
 
-#plot figure
+#plot figure 8
 
-    pdf('Figure-Holdback.pdf', width = 12, height = 7)
+    pdf('Figure8-Holdback.pdf', width = 12, height = 7)
     par(oma=c(0,0,2,0))
     par(mfrow=c(1,2))
 
@@ -34,8 +35,8 @@
 
 
     plot(xrange, yrange, type="n", xlab="b", ylab=expression(paste("VOI (", sigma^2, ")")) , xaxt="n", yaxt="n")
-    lines(data.s0$b, data.s0$NashEh, lty=5, lwd=3, col="red")
-    lines(data.s0$b, data.s0$NashRh, lty=5, lwd=3, col="blue")
+    lines(data.s0$b, data.s0$NashEh, lty=2, lwd=3, col="red")
+    lines(data.s0$b, data.s0$NashRh, lty=2, lwd=3, col="blue")
     lines(data.s09$b, data.s09$NashEh, lty=1, lwd=3, col="red")
     lines(data.s09$b, data.s09$NashRh, lty=1, lwd=3, col="blue")
     lines(data.s20$b, data.s20$NashEh, lty=1, lwd=3, col="red")
@@ -56,7 +57,7 @@
     title(main="(b) Socially Efficient Strategies")
 
  
-    title(main="Holdback", outer=T)
+    title(main="Figure 8. Holdback", outer=T)
 
     dev.off()
 
