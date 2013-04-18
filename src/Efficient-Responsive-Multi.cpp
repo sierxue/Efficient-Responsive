@@ -127,7 +127,7 @@ int main()
     //cout << "u\tvar\tb\tc_E\tc_R1\tc_R2\tK\tq_EE\tPi_EE\tCS_EE\tTS_EE\tq_RR\tPi_RR\tCS_RR\tTS_RR\tqE_ER\tqR_ER\tPiE_ER\tPiR_ER\tCS_ER\tTS_ER\tNashEq\tq1_RRm\tQ1_RRm\tQ2_RRm\tPi1_RRm\tPi2_RRm\tPi_RRm\tCS_RRm\tTS_RRm\tNashEqm\tCSm*\tTSm*" << endl;
     //file << "u\tvar\tb\tc_E\tc_R1\tc_R2\tK\tq_EE\tPi_EE\tCS_EE\tTS_EE\tq_RR\tPi_RR\tCS_RR\tTS_RR\tqE_ER\tqR_ER\tPiE_ER\tPiR_ER\tCS_ER\tTS_ER\tNashEq\tq1_RRm\tQ1_RRm\tQ2_RRm\tPi1_RRm\tPi2_RRm\tPi_RRm\tCS_RRm\tTS_RRm\tNashEqm\tCSm*\tTSm*" << endl;
 
-    file2 << "K\tdelta\tb\tNashE\tNashR\tCS01\tCS12\tTS01\tTS12\tCoop01\tCoop12" << endl;
+    file2 << "K\tdelta\tb\tNashE\tNashR\tNashEm\tNashRm\tCS01m\tCS12m\tTS01m\tTS12m\tCoop01m\tCoop12m" << endl;
 
     //initialize array for standard normal pdf
     for (int i=0; i<=2*N*STEP; i++)
@@ -155,12 +155,14 @@ int main()
     //thresholds are such that if the uncertainty $var$ exceeds the threshold, the corresponding optimal strategy switches to R from E
     vector< vector<double> > NashE(KK+1, vector<double>(JJ+1));     //threshold for the optimal Nash strategy if the other player chooses E
     vector< vector<double> > NashR(KK+1, vector<double>(JJ+1));     //threshold for the optimal Nash strategy if the other player chooses R
-    vector< vector<double> > CS01(KK+1, vector<double>(JJ+1));
-    vector< vector<double> > CS12(KK+1, vector<double>(JJ+1));
-    vector< vector<double> > TS01(KK+1, vector<double>(JJ+1));
-    vector< vector<double> > TS12(KK+1, vector<double>(JJ+1));
-    vector< vector<double> > Coop01(KK+1, vector<double>(JJ+1));
-    vector< vector<double> > Coop12(KK+1, vector<double>(JJ+1));
+    vector< vector<double> > NashEm(KK+1, vector<double>(JJ+1));
+    vector< vector<double> > NashRm(KK+1, vector<double>(JJ+1));
+    vector< vector<double> > CS01m(KK+1, vector<double>(JJ+1));
+    vector< vector<double> > CS12m(KK+1, vector<double>(JJ+1));
+    vector< vector<double> > TS01m(KK+1, vector<double>(JJ+1));
+    vector< vector<double> > TS12m(KK+1, vector<double>(JJ+1));
+    vector< vector<double> > Coop01m(KK+1, vector<double>(JJ+1));
+    vector< vector<double> > Coop12m(KK+1, vector<double>(JJ+1));
 
 
     for (int kk=0; kk<=KK; kk++)            //empty for-loop left for future introduction of K or delta 
@@ -450,27 +452,33 @@ int main()
                 
                 if (Pi_EE>=PiR_ER)
                     NashE[kk][jj] = var;
-
-                if (PiE_ER>=Pi_RRm)
+                
+                if (PiE_ER>=Pi_RR)
                     NashR[kk][jj] = var;
 
+                if (Pi_EE>=PiR_ER)
+                    NashEm[kk][jj] = var;
+
+                if (PiE_ER>=Pi_RRm)
+                    NashRm[kk][jj] = var;
+
                 if ((CS_EE>=CS_ER)&&(CS_EE>=CS_RRm))
-                    CS01[kk][jj] = var;
+                    CS01m[kk][jj] = var;
 
                 if ((CS_EE>=CS_RRm)||(CS_ER>=CS_RRm))
-                    CS12[kk][jj] = var;
+                    CS12m[kk][jj] = var;
 
                 if ((TS_EE>=TS_ER)&&(TS_EE>=TS_RRm))
-                    TS01[kk][jj] = var;
+                    TS01m[kk][jj] = var;
 
                 if ((TS_EE>=TS_RRm)||(TS_ER>=TS_RRm))
-                    TS12[kk][jj] = var;
+                    TS12m[kk][jj] = var;
 
                 if ((Pi_EE*2>=PiE_ER+PiR_ER)&&(Pi_EE>=Pi_RRm))
-                    Coop01[kk][jj] = var;
+                    Coop01m[kk][jj] = var;
 
                 if ((Pi_EE>=Pi_RRm)||(PiE_ER+PiR_ER>=2*Pi_RRm))
-                    Coop12[kk][jj] = var;
+                    Coop12m[kk][jj] = var;
 
 
             }   //end-for var
@@ -479,7 +487,7 @@ int main()
 
         //output the thresholds to file2
         for (int jj=0; jj<=JJ; jj++)
-            file2 << K << "\t" << delta << "\t" << jj*0.01 << "\t" << NashE[kk][jj]  << "\t" << NashR[kk][jj]  << "\t" << CS01[kk][jj]  << "\t" << CS12[kk][jj]  << "\t" << TS01[kk][jj]  << "\t" << TS12[kk][jj]  << "\t" << Coop01[kk][jj]  << "\t" << Coop12[kk][jj] << endl;
+            file2 << K << "\t" << delta << "\t" << jj*0.01 << "\t" << NashE[kk][jj]  << "\t" << NashR[kk][jj]  << "\t"  << NashEm[kk][jj]  << "\t" << NashRm[kk][jj]  << "\t" << CS01m[kk][jj]  << "\t" << CS12m[kk][jj]  << "\t" << TS01m[kk][jj]  << "\t" << TS12m[kk][jj]  << "\t" << Coop01m[kk][jj]  << "\t" << Coop12m[kk][jj] << endl;
 
     }   //end big parameter loop
 
