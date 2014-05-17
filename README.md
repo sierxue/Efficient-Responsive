@@ -21,13 +21,24 @@ Reference
 
     Paper title:    "The Effect of Competition on the Efficient–Responsive Choice"
     Authors:        Tong Wang, Douglas Thomas and Nils Rudi
-    Year:           2013
+    Year:           2014
     Journal:        Production and Operations Management
-    Volume:         Forthcoming
-    Number:
-    Page:
-    Journal link:   
+    Volume:         23
+    Number:         5
+    Page:           829–846
+    Journal link:   http://onlinelibrary.wiley.com/doi/10.1111/poms.12093/abstract
     BibTeX:
+                    @article{WangThomasRudi2014,
+                        author = {Wang, Tong and Thomas, Douglas and Rudi, Nils}, 
+                        title = {The Effect of Competition on the Efficient–Responsive Choice},
+                        journal = {Production and Operations Management} 
+                        volume = {23}, 
+                        number = {5}, 
+                        pages = {829–846}, 
+                        year = {2014}, 
+                        doi = {10.1111/poms.12093}, 
+                        URL = {http://onlinelibrary.wiley.com/doi/10.1111/poms.12093/abstract}, 
+                    }
     Further resources (such as the original paper in PDF format, its e-companion, and presentation slides) are available at http://bschool.nus.edu/staff/bizwt/research.html.
 
 
@@ -41,3 +52,4 @@ Instructions
     The R scripts require a working R environment (http://www.r-project.org/). The scripts are only tested on R version 2.15, but should be running smoothly on newer versions. The scripts do not require extra R packages.
 
 
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.9934.png)](https://zenodo.org/record/9934/)
